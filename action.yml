@@ -14,6 +14,9 @@ inputs:
     description: "Push images to registry? (yes/no)"
     required: true
     default: no
+  docker_tag:
+    description: "what to tag the images with"
+    required: false
 outputs: {}
 runs:
   using: "composite"
@@ -23,5 +26,11 @@ runs:
         repository: msherman64/kolla-containers
     - name: Set up Python
       uses: actions/setup-python@v2
-    - run: ./run.sh python3 build.py
+    - name: execute build
+      env:
+        docker_tag: ${{ inputs.docker_tag }}
+      run: |
+        ./run.sh python3 build.py \
+          --config-set ${{ inputs.config_set }} \
+          --build-profile ${{ inputs.kolla_build_profile }}
       shell: bash
