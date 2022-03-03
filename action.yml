@@ -32,6 +32,7 @@ runs:
       run: |
         ./run.sh python3 build.py \
           --build-dir ${{ runner.temp }} \
+          --no-use-cache \
           --config-set ${{ inputs.config_set }} \
           --profile ${{ inputs.kolla_build_profile }}
       shell: bash
