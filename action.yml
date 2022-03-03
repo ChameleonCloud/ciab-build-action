@@ -28,9 +28,10 @@ runs:
       uses: actions/setup-python@v2
     - name: execute build
       env:
-        docker_tag: ${{ inputs.docker_tag }}
+        DOCKER_TAG: ${{ inputs.docker_tag }}
       run: |
         ./run.sh python3 build.py \
+          --build-dir ${{ runner.temp }} \
           --config-set ${{ inputs.config_set }} \
-          --build-profile ${{ inputs.kolla_build_profile }}
+          --profile ${{ inputs.kolla_build_profile }}
       shell: bash
