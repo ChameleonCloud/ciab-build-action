@@ -25,7 +25,7 @@ runs:
       with:
         repository: msherman64/kolla-containers
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
     - name: execute build
       env:
         DOCKER_TAG: ${{ inputs.docker_tag }}
